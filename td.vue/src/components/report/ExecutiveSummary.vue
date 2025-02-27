@@ -63,7 +63,10 @@ export default {
         },
         notMitigated: function () {
             return this.threats
-                .filter(threat => threat.status.toLowerCase() !== 'mitigated')
+                .filter(threat => {
+                    const status = threat.status.toLowerCase();
+                    return status !== 'mitigated' && status !== 'notapplicable';
+                })
                 .length;
         },
         openCritical: function () {
